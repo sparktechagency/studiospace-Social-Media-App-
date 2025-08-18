@@ -43,11 +43,11 @@ const FilterModal: React.FC<{ visible: boolean; onClose: () => void; onApply: (f
     return (
         <Modal animationType="slide" transparent={true} visible={visible} onRequestClose={onClose}>
             <TouchableOpacity style={tw`flex-1 justify-end bg-black bg-opacity-50`} onPress={onClose} activeOpacity={1}>
-                <TouchableOpacity activeOpacity={1} style={tw`bg-[#3A3E41] rounded-t-3xl`}>
+                <TouchableOpacity activeOpacity={1} style={tw`bg-[#3A3E41] rounded-t-3xl pt-20`}>
                     <View style={tw`items-center py-3`}>
                         <View style={tw`w-16 h-1.5 bg-gray-500 rounded-full`} />
                     </View>
-                    <ScrollView contentContainerStyle={tw`p-6`}>
+                    <ScrollView contentContainerStyle={tw`p-6 `}>
                         <Text style={tw`text-white text-xl font-bold mb-4`}>Filters</Text>
 
                         <FilterSection title="Sort By">

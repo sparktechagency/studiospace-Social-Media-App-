@@ -1,5 +1,6 @@
 import tw from "@/lib/tailwind";
 import { PostCardProps } from "@/lib/types/type";
+import { router } from "expo-router";
 import React, { useState } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { ImageCarouselIndicator } from "./ImageCarouselIndicator";
@@ -21,25 +22,29 @@ export const PostCard: React.FC<PostCardProps> = ({ user, image, likes, comments
         <View style={tw`bg-[#3A3E41] my-2`}>
             <PostHeader user={user} isFollowing={user.isFollowing} />
 
-            {user.postText && (
-                <View style={tw`px-4 pb-3`}>
-                    <Text style={tw`text-white`}>
-                        {isExpanded || !isLongText ? user.postText : `${user.postText.substring(0, 100)}... `}
-                        {isLongText && (
-                            <TouchableOpacity onPress={toggleText}>
-                                <Text style={tw`text-blue-400 `}>
-                                    {isExpanded ? 'see less' : 'see more'}
-                                </Text>
-                            </TouchableOpacity>
-                        )}
-                    </Text>
-                </View>
-            )}
 
-            <View style={tw`relative`}>
-                <Image source={require('../../../assets/images/postimg1.png')} style={tw`w-full h-80`} resizeMode="cover" />
-                <ImageCarouselIndicator />
-            </View>
+            <TouchableOpacity onPress={() => router.push(`/Post_Details`)}>
+
+                {user.postText && (
+                    <View style={tw`px-4 pb-3`}>
+                        <Text style={tw`text-white`}>
+                            {isExpanded || !isLongText ? user.postText : `${user.postText.substring(0, 100)}... `}
+                            {isLongText && (
+                                <TouchableOpacity onPress={toggleText}>
+                                    <Text style={tw`text-blue-400 `}>
+                                        {isExpanded ? 'see less' : 'see more'}
+                                    </Text>
+                                </TouchableOpacity>
+                            )}
+                        </Text>
+                    </View>
+                )}
+
+                <View style={tw`relative`}>
+                    <Image source={require('../../../assets/images/postimg1.png')} style={tw`w-full h-80`} resizeMode="cover" />
+                    <ImageCarouselIndicator />
+                </View>
+            </TouchableOpacity>
 
             <PostFooter likes={likes} comments={comments} shares={shares} />
         </View>

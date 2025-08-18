@@ -1,6 +1,8 @@
+import { downcircleicon, downicon, upcircleicon } from '@/assets/icon/Icon';
 import { router } from 'expo-router';
 import React from 'react';
-import { Image, Modal, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, Modal, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { SvgXml } from 'react-native-svg';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import tw from 'twrnc';
 
@@ -24,6 +26,14 @@ const Sidebar: React.FC<SidebarProps> = ({ visible, onClose }) => {
     const handleNavigate = (path: string) => {
         // useRouter().push(path);
         onClose(); // Close the sidebar after navigating
+    };
+
+    const handleLogout = () => {
+        Alert.alert('Logout', 'Are you sure you want to logout?', [
+            { text: 'Cancel', style: 'cancel' },
+            { text: 'Logout', onPress: () => router.push('/Login_SignupSelect') },
+        ])
+        onClose(); // Close the sidebar after logout
     };
 
     return (
@@ -54,32 +64,71 @@ const Sidebar: React.FC<SidebarProps> = ({ visible, onClose }) => {
                     </View>
 
                     {/* Navigation Links */}
-                    <ScrollView style={tw`p-4`}>
-                        <SidebarItem onPress={() => router.push('/(tabs)')} icon="home" text="Home" />
+                    <ScrollView style={tw`p-4 `}>
                         <SidebarItem onPress={() => {
                             onClose();
-                            router.push('/Login_SignupSelect')
-                        }} icon="user" text="My Profile" />
-                        <SidebarItem onPress={() => router.push('/network')} icon="briefcase" text="Create Business .." />
+                            router.push('/(tabs)')
+                        }} icon="home" text="Home" />
+                        <View style={tw`flex flex-row items-center justify-between`}>
+                            <SidebarItem onPress={() => {
+                                onClose();
+                                router.push('/Login_SignupSelect')
+                            }} icon="user" text="My Profile" />
+                            <TouchableOpacity style={tw`flex-row items-center gap-3 py-3`} onPress={() => {
+                                onClose();
+                                router.push('/modals/account_switch_modal')
+                            }}>
+                                <View style={tw`relative`}>
+                                    <SvgXml style={tw`absolute -top-1.8 -right-0.2`} xml={upcircleicon} />
+                                    <Image source={require('../../../assets/images/avater/avater3.png')} style={tw`w-6 h-6 mr-1.5 rounded-full`} />
+
+                                    <SvgXml style={tw`absolute -bottom-1.8 -right-0.2`} xml={downcircleicon} />
+                                </View>
+                                <SvgXml xml={downicon} />
+                            </TouchableOpacity>
+                        </View>
+
+                        <SidebarItem onPress={() => {
+                            onClose();
+                            router.push('/Create_businessProfile')
+                        }} icon="briefcase" text="Create Business .." />
 
                         <View style={tw`mt-4`}>
-                            <SidebarItem icon="compass" text="Discovery" />
-                            <SidebarItem icon="users" text="My Network" />
-                            <SidebarItem icon="bookmark" text="Saved" />
-                            <SidebarItem icon="eye" text="Profile Views" />
+                            <SidebarItem onPress={() => {
+                                onClose();
+                                router.push('/Discovery')
+                            }} icon="compass" text="Discovery" />
+                            <SidebarItem onPress={() => {
+                                onClose();
+                                router.push('/network')
+                            }} icon="users" text="My Network" />
+                            <SidebarItem onPress={() => {
+                                onClose();
+                                router.push('/Saved_posts')
+                            }} icon="bookmark" text="Saved" />
+                            <SidebarItem onPress={() => {
+                                onClose();
+                                router.push('/profile_viewers')
+                            }} icon="eye" text="Profile Views" />
                             <SidebarItem icon="plus-square" text="Create Group" />
                         </View>
 
-                        <View style={tw`mt-8`}>
+                        <View style={tw`mt-8 pb-4`}>
                             <Text style={tw`text-[#B9B9B9] text-xs font-bold mb-2`}>PREFERENCE</Text>
-                            <SidebarItem icon="cog" text="Settings" />
+                            <SidebarItem onPress={() => {
+                                onClose();
+                                router.push('/Seetings')
+                            }} icon="cog" text="Settings" />
                         </View>
                     </ScrollView>
 
                     {/* Footer Section */}
                     <View style={tw`p-4 border-t border-gray-700`}>
-                        <SidebarItem icon="question-circle" text="Help & Support" />
-                        <SidebarItem icon="sign-out" text="Log Out" />
+                        <SidebarItem onPress={() => {
+                            onClose();
+                            router.push('/HelpAnd_support')
+                        }} icon="question-circle" text="Help & Support" />
+                        <SidebarItem onPress={handleLogout} icon="sign-out" text="Log Out" />
                     </View>
                 </View>
 

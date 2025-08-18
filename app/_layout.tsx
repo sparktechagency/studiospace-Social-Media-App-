@@ -33,6 +33,11 @@ const AppLayout = () => {
           sheetAllowedDetents: "fitToContents",
           contentStyle: { backgroundColor: "transparent" },
         }} />
+        <Stack.Screen name="modals/account_switch_modal" options={{
+          presentation: "formSheet",
+          sheetAllowedDetents: "fitToContents",
+          contentStyle: { backgroundColor: "transparent" },
+        }} />
 
       </Stack>
     </View>
