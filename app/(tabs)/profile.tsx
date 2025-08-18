@@ -38,7 +38,7 @@ const StatItem: React.FC<{ icon: string; value: string; label: string }> = ({ ic
 
 const ExperienceItem: React.FC<{ title: string; company: string; duration: string; location: string; description: string; logo: string }> = ({ title, company, duration, location, description, logo }) => (
     <View style={tw`flex-row gap-4 mb-4`}>
-        <Image source={{ uri: logo }} style={tw`w-10 h-10 rounded-lg mt-1`} />
+        <Image source={require('../../assets/images/avater/avater3.png')} style={tw`w-10 h-10 rounded-lg mt-1`} />
         <View style={tw`flex-1`}>
             <Text style={tw`text-white font-bold text-base`}>{title}</Text>
             <Text style={tw`text-gray-400 text-sm`}>{company}</Text>

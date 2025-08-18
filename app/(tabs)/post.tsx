@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { Image, Modal, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import tw from 'twrnc';
+import Header from '../components/ui/Header';
 
 // --- Type for selected files ---
 interface SelectedFile {
@@ -80,14 +81,7 @@ const CreatePost = () => {
 
     return (
         <View style={tw`flex-1 bg-[#0F0E13]`}>
-            {/* --- Header --- */}
-            <View style={tw`bg-[#3A3E41] p-4 pt-12 flex-row justify-between items-center`}>
-                <TouchableOpacity>
-                    <Icon name="arrow-left" size={20} color="white" />
-                </TouchableOpacity>
-                <Text style={tw`text-white text-xl font-bold`}>Create Post</Text>
-                <View style={tw`w-6`} />{/* Spacer */}
-            </View>
+            <Header title="Create Post" searchStatus={false} />
 
             <PrivacyModal
                 visible={isPrivacyModalVisible}

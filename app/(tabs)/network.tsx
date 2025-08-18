@@ -1,9 +1,7 @@
-import { menuicon, message, notification } from '@/assets/icon/Icon';
 import tw from '@/lib/tailwind';
 import React, { useState } from 'react';
-import { FlatList, Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { SvgXml } from 'react-native-svg';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
+import Header from '../components/ui/Header';
 
 // --- Type Definitions ---
 interface User {
@@ -18,33 +16,7 @@ interface User {
 
 // --- Reusable Components ---
 
-const Header: React.FC = () => (
-    <View style={tw`bg-[#3A3E41] p-4 pt-12`}>
-        <View style={tw`flex-row justify-between items-center`}>
-            <TouchableOpacity>
-                <SvgXml xml={menuicon} />
-            </TouchableOpacity>
-            <View style={tw`flex-1 flex-row items-center bg-[#1A1C20] rounded mx-4 px-3`}>
-                <Icon name="search" size={18} color="#989898" />
-                <TextInput
-                    placeholder="Search by name"
-                    placeholderTextColor="#989898"
-                    style={tw`text-white p-2 text-base w-full`}
-                />
-            </View>
-            <View style={tw`flex-row items-center gap-4`}>
-                <TouchableOpacity style={tw`relative`}>
-                    <SvgXml xml={notification} />
-                    <View style={tw`absolute -top-1 -right-1 w-3 h-3 bg-red-600 rounded-full`} />
-                </TouchableOpacity>
-                <TouchableOpacity style={tw`relative`}>
-                    <SvgXml xml={message} />
-                    <View style={tw`absolute -top-1 -right-1 w-3 h-3 bg-red-600 rounded-full`} />
-                </TouchableOpacity>
-            </View>
-        </View>
-    </View>
-);
+
 
 const NetworkTabs: React.FC<{ activeTab: string; setActiveTab: (tab: string) => void }> = ({ activeTab, setActiveTab }) => {
     const tabs = ["Connections", "Discover Network", "Requests", "Visitors"];
@@ -193,7 +165,7 @@ const MyNetworkScreen = () => {
 
     return (
         <View style={tw`flex-1 bg-[#0F0E13]`}>
-            <Header />
+            <Header searchPlaceholder='Search by name' searchStatus={true} />
             <View style={tw`p-4`}>
                 <Text style={tw`text-white text-xl font-bold`}>My Network</Text>
             </View>

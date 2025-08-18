@@ -293,8 +293,10 @@ export const PostFooter: React.FC<PostFooterProps> = ({ likes, comments, shares 
             {showReactions && (
                 <View style={tw`absolute -top-8 left-6 flex-row gap-2 bg-[#686868] p-2 px-4 rounded-tl-[15px] rounded-br-[15px] rounded-tr-[15px] h-[45px] z-10`}>
                     <TouchableOpacity onPress={() => handleReaction('❤️')}><Text style={tw`text-2xl`}>❤️</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={() => handleReaction('😍')}><Text style={tw`text-2xl`}>😍</Text></TouchableOpacity>
                     <TouchableOpacity onPress={() => handleReaction('😂')}><Text style={tw`text-2xl`}>😂</Text></TouchableOpacity>
-                    <TouchableOpacity onPress={() => handleReaction('😢')}><Text style={tw`text-2xl`}>😢</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={() => handleReaction('😭')}><Text style={tw`text-2xl`}>😭</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={() => handleReaction('😲')}><Text style={tw`text-2xl`}>😲</Text></TouchableOpacity>
                     <TouchableOpacity onPress={() => handleReaction('😡')}><Text style={tw`text-2xl`}>😡</Text></TouchableOpacity>
                 </View>
             )}
@@ -302,7 +304,7 @@ export const PostFooter: React.FC<PostFooterProps> = ({ likes, comments, shares 
                 <View style={tw`flex-row items-center gap-4`}>
                     <TouchableOpacity
                         style={tw`flex-row items-center gap-2 h-[30px]`}
-                        onPress={() => handleReaction(reaction ? null : '👍')}
+                        onPress={() => handleReaction(reaction ? null : '❤️')}
                         onLongPress={() => setShowReactions(true)}
                     >
                         {reaction ? <Text style={tw`text-2xl`}>{reaction}</Text> : <Icon name="heart-o" size={24} color="white" />}

@@ -5,7 +5,7 @@ import React, { useCallback, useState } from 'react';
 import { ActivityIndicator, FlatList, Image, RefreshControl, StatusBar, Text, View } from 'react-native';
 import tw from 'twrnc';
 import { GroupCard } from '../components/ui/GroupCard';
-import HomeHeader from '../components/ui/HomeHeader';
+import Header from '../components/ui/Header';
 import { PostCard } from '../components/ui/PostCard';
 import Stories from '../components/ui/Stories';
 
@@ -147,7 +147,8 @@ const Home: React.FC = () => {
         <View style={tw`flex-1 bg-[#0F0E13]`}>
             <StatusBar barStyle="light-content" />
 
-            <HomeHeader />
+            {/* <HomeHeader /> */}
+            <Header searchStatus searchPlaceholder="Search jobs, companies" />
             <Stories />
 
             <FlatList

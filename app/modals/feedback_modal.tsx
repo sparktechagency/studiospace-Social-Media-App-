@@ -1,18 +1,22 @@
-import { blockuser, hidepost, intersted, notintersted, report, savedPost } from '@/assets/icon/Icon';
-import tw from '@/lib/tailwind';
-import React from 'react';
-import { Modal, TouchableOpacity, View } from 'react-native';
-import { SvgXml } from 'react-native-svg';
-import ModalOption from './ModalOption';
-const FeedBackModal: React.FC<{ visible: boolean; onClose: () => void; onOptionPress: (option: string) => void; userName: string }> = ({ visible, onClose, onOptionPress, userName }) => {
+import { blockuser, hidepost, intersted, notintersted, report, savedPost } from '@/assets/icon/Icon'
+import tw from '@/lib/tailwind'
+import { router } from 'expo-router'
+import React from 'react'
+import { Alert, TouchableOpacity, View } from 'react-native'
+import { SvgXml } from 'react-native-svg'
+import ModalOption from '../components/ui/ModalOption'
+
+
+
+const feedback_modal: React.FC<{ visible?: boolean; onClose?: () => void; userName: string }> = ({ visible, onClose, userName }) => {
+
+    const onOptionPress = (option: string) => {
+        Alert.alert('Option Pressed', option);
+    };
+
     return (
-        <Modal
-            animationType="slide"
-            transparent={true}
-            visible={visible}
-            onRequestClose={onClose}
-        >
-            <TouchableOpacity style={tw`flex-1 justify-end bg-black bg-opacity-50`} onPress={onClose} activeOpacity={1}>
+        <View>
+            <TouchableOpacity style={tw``} >
                 {/* Prevent modal from closing when tapping inside it */}
                 <TouchableOpacity activeOpacity={1} style={tw`bg-[#3A3E41] rounded-t-3xl`}>
                     {/* Modal Handle */}
@@ -27,15 +31,17 @@ const FeedBackModal: React.FC<{ visible: boolean; onClose: () => void; onOptionP
                         } text="Interested" onPress={() => onOptionPress('Interested')} />
                         <ModalOption icon={<SvgXml xml={notintersted} />} text="Not Interested" onPress={() => onOptionPress('Not Interested')} />
                         <ModalOption icon={<SvgXml xml={savedPost} />} text="Save Post" onPress={() => onOptionPress('Save Post')} />
-                        <ModalOption icon={<SvgXml xml={report} />} text="Report Post" onPress={() => onOptionPress('Report Post')} />
+                        <ModalOption icon={<SvgXml xml={report} />} text="Report Post" onPress={() => {
+                            router.back()
+                            router.push('/modals/report_modal')
+                        }} />
                         <ModalOption icon={<SvgXml xml={hidepost} />} text="Hide Post" onPress={() => onOptionPress('Hide Post')} />
                         <ModalOption icon={<SvgXml xml={blockuser} />} text={`Block ${userName}'s profile`} onPress={() => onOptionPress('Block Profile')} />
                     </View>
                 </TouchableOpacity>
             </TouchableOpacity>
-        </Modal>
-    );
-};
+        </View>
+    )
+}
 
-
-export default FeedBackModal
+export default feedback_modal

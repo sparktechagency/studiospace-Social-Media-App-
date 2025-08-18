@@ -1,3 +1,4 @@
+import { router } from 'expo-router';
 import React from 'react';
 import { Image, Modal, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -54,9 +55,12 @@ const Sidebar: React.FC<SidebarProps> = ({ visible, onClose }) => {
 
                     {/* Navigation Links */}
                     <ScrollView style={tw`p-4`}>
-                        <SidebarItem icon="home" text="Home" />
-                        <SidebarItem icon="user" text="My Profile" />
-                        <SidebarItem icon="briefcase" text="Create Business .." />
+                        <SidebarItem onPress={() => router.push('/(tabs)')} icon="home" text="Home" />
+                        <SidebarItem onPress={() => {
+                            onClose();
+                            router.push('/Login_SignupSelect')
+                        }} icon="user" text="My Profile" />
+                        <SidebarItem onPress={() => router.push('/network')} icon="briefcase" text="Create Business .." />
 
                         <View style={tw`mt-4`}>
                             <SidebarItem icon="compass" text="Discovery" />

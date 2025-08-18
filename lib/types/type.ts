@@ -73,3 +73,24 @@ export interface Post {
     sharer: User;
   };
 }
+
+export interface Comment {
+  id: string;
+  name: string;
+  avatar: string;
+  text: string;
+  timestamp: string;
+  replies?: Comment[];
+}
+
+export interface CommentsModalProps {
+  isVisible: boolean;
+  onClose: () => void;
+  comments: Comment[];
+  onPostComment: (commentText: string, parentId?: string) => void;
+}
+
+export interface CommentItemProps {
+  comment: Comment;
+  onReply: (commentId: string) => void;
+}
