@@ -14,7 +14,7 @@ const AppLayout = () => {
       <Sidebar visible={isSidebarVisible} onClose={toggleSidebar} />
 
 
-      <Stack initialRouteName="(tabs)" screenOptions={{ headerShown: false }}>
+      <Stack initialRouteName="(splash)/splashscreen" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="(splash)/splashscreen" />
 
         <Stack.Screen name="(tabs)" />
