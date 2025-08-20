@@ -93,7 +93,7 @@ const Sidebar: React.FC<SidebarProps> = ({ visible, onClose }) => {
                             router.push('/Create_businessProfile')
                         }} icon="briefcase" text="Create Business .." />
 
-                        <View style={tw`mt-4`}>
+                        <View style={tw``}>
                             <SidebarItem onPress={() => {
                                 onClose();
                                 router.push('/Discovery')
