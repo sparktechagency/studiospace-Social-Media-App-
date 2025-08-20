@@ -1,3 +1,4 @@
+import { imageAssets } from '@/assets/images/image';
 import tw from '@/lib/tailwind';
 import { router } from 'expo-router';
 import React from 'react';
@@ -18,9 +19,9 @@ const AccountSwitchModal = () => {
             </View>
 
             {/* Profile Section */}
-            <TouchableOpacity onPress={() => router.push('/Business_profile')} style={tw`flex-row items-center mb-8`}>
+            <TouchableOpacity onPress={() => router.push('/drawer/screens/Business_profile')} style={tw`flex-row items-center mb-8`}>
                 <Image
-                    source={require('../../assets/images/avater/avater3.png')}
+                    source={imageAssets.avater}
                     style={tw`w-16 h-16 rounded-full`}
                 />
                 <View style={tw`ml-4`}>

@@ -1,23 +1,17 @@
-import { SidebarProvider, useSidebar } from "@/lib/hooks/SidebarContext";
 import { Stack } from "expo-router";
 import { StatusBar, View } from "react-native";
-import Sidebar from "./components/ui/Sidebar";
 
 
 
 const AppLayout = () => {
-  const { isSidebarVisible, toggleSidebar } = useSidebar();
+
 
   return (
     <View style={{ flex: 1 }}>
-
-      <Sidebar visible={isSidebarVisible} onClose={toggleSidebar} />
-
-
-      <Stack initialRouteName="(splash)/splashscreen" screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="(splash)/splashscreen" />
-
-        <Stack.Screen name="(tabs)" />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" />
+        <Stack.Screen name="drawer" />
+        {/* <Stack.Screen name="home" /> */}
         <Stack.Screen name="modals/feedback_modal" options={{
           presentation: "formSheet",
           sheetAllowedDetents: "fitToContents",
@@ -38,6 +32,16 @@ const AppLayout = () => {
           sheetAllowedDetents: "fitToContents",
           contentStyle: { backgroundColor: "transparent" },
         }} />
+        <Stack.Screen name="modals/socialmedia_modal" options={{
+          presentation: "formSheet",
+          sheetAllowedDetents: "fitToContents",
+          contentStyle: { backgroundColor: "transparent" },
+        }} />
+        <Stack.Screen name="modals/comments_modal" options={{
+          presentation: "transparentModal",
+          sheetAllowedDetents: "fitToContents",
+          contentStyle: { backgroundColor: "transparent" },
+        }} />
 
       </Stack>
     </View>
@@ -47,9 +51,9 @@ const AppLayout = () => {
 
 export default function RootLayout() {
   return (
-    <SidebarProvider>
+    <>
       <StatusBar barStyle="light-content" />
       <AppLayout />
-    </SidebarProvider>
+    </>
   );
 }

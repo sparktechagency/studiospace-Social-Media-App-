@@ -4,7 +4,7 @@ import { router } from 'expo-router'
 import React from 'react'
 import { Alert, TouchableOpacity, View } from 'react-native'
 import { SvgXml } from 'react-native-svg'
-import ModalOption from '../components/ui/ModalOption'
+import ModalOption from '../../components/ui/ModalOption'
 
 
 

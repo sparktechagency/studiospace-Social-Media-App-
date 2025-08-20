@@ -15,7 +15,7 @@ const ReportDetails = () => {
         console.log('Reason:', reason);
         console.log('Comment:', comment);
         // After submitting, you can dismiss the modal or navigate away
-        router.dismissAll();
+        router.push('/drawer/home');
     };
 
     // Using <Pressable> for the background overlay is better for accessibility
